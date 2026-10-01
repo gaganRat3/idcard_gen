@@ -1,0 +1,1124 @@
+/* =============================================
+   RESET & BASE
+   ============================================= */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  /* Exact colors from your reference image */
+  --blue: #1b5b8f;
+  --orange: #eb7c22;
+  --yellow: #feca01;
+  --green: #16a34a;
+  --bg: #eef2f7;
+  --white: #ffffff;
+  --text: #0f172a;
+  --muted: #64748b;
+  --border: #e2e8f0;
+}
+
+body {
+  font-family: "Segoe UI", Arial, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* =============================================
+   HEADER
+   ============================================= */
+.site-header {
+  background: var(--blue);
+  padding: 0.75rem 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+.header-logos {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: #fff;
+  border-radius: 4px;
+  padding: 4px 8px;
+}
+.h-logo {
+  height: 26px;
+  width: auto;
+  max-width: 85px;
+  object-fit: contain;
+  display: block;
+}
+.logo-sep {
+  width: 1px;
+  height: 20px;
+  background: #e2e8f0;
+  flex-shrink: 0;
+}
+.header-title {
+  font-size: 1.15rem;
+  font-weight: 900;
+  color: var(--yellow);
+  letter-spacing: 0.3px;
+}
+.header-sub {
+  font-size: 0.72rem;
+  color: rgba(255, 255, 255, 0.7);
+  margin-top: 1px;
+}
+
+/* =============================================
+   PROGRESS BAR
+   ============================================= */
+.progress-wrap {
+  background: var(--white);
+  border-bottom: 1px solid var(--border);
+  padding: 0.7rem 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+  flex-wrap: wrap;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+.progress-label {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  min-width: 80px;
+}
+.progress-label > span:first-child {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text);
+}
+.progress-label strong {
+  color: var(--blue);
+}
+.step-badge {
+  display: inline-block;
+  background: var(--blue);
+  color: var(--yellow);
+  font-size: 0.6rem;
+  font-weight: 800;
+  letter-spacing: 0.8px;
+  padding: 2px 8px;
+  border-radius: 20px;
+  width: fit-content;
+}
+.step-badge.back {
+  background: var(--orange);
+  color: #fff;
+}
+.slots-row {
+  display: flex;
+  gap: 5px;
+  flex-wrap: wrap;
+  flex: 1;
+}
+
+.slot {
+  width: 36px;
+  height: 50px;
+  border: 2px dashed var(--border);
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.6rem;
+  font-weight: 700;
+  color: var(--muted);
+  background: #f8fafc;
+  transition: all 0.2s;
+}
+.slot.active {
+  border: 2.5px solid var(--blue);
+  background: #eff6ff;
+  color: var(--blue);
+  box-shadow: 0 0 0 3px rgba(27, 91, 143, 0.15);
+  animation: pulseBorder 1.5s ease infinite;
+}
+@keyframes pulseBorder {
+  0%,
+  100% {
+    box-shadow: 0 0 0 3px rgba(27, 91, 143, 0.15);
+  }
+  50% {
+    box-shadow: 0 0 0 5px rgba(27, 91, 143, 0.28);
+  }
+}
+.slot.filled {
+  border: 2px solid var(--green);
+  background: #f0fdf4;
+  color: var(--green);
+}
+.slot-check {
+  font-size: 0.9rem;
+  line-height: 1;
+}
+.slot-num {
+  font-size: 0.58rem;
+  font-weight: 800;
+  opacity: 0.7;
+}
+
+/* =============================================
+   MAIN WRAP & STEP VIEW
+   ============================================= */
+.main-wrap {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1.4rem 1rem 2.5rem;
+  background: var(--bg);
+}
+.step-view {
+  width: 100%;
+  max-width: 420px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  animation: fadeSlide 0.3s ease;
+}
+@keyframes fadeSlide {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+.step-heading {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+.step-num {
+  display: inline-block;
+  background: var(--blue);
+  color: #fff;
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+  padding: 2px 10px;
+  border-radius: 20px;
+}
+.step-title {
+  font-size: 0.82rem;
+  color: var(--muted);
+}
+.card-stage {
+  display: flex;
+  justify-content: center;
+}
+
+/* =============================================
+   ENTRY CARD (matches exact Canva reference)
+   ============================================= */
+.ec {
+  width: 310px;
+  height: 527px; /* 50:85 aspect ratio (310 x 527) */
+  border-radius: 10px;
+  overflow: hidden;
+  background: #fff;
+  box-shadow:
+    0 12px 32px rgba(0, 0, 0, 0.15),
+    0 4px 8px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+/* ─── Logo bar (Blue Background, White Boxes) ─── */
+.ec-logo-bar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  padding: 10px 8px 6px;
+  background: var(--blue);
+  flex-shrink: 0;
+}
+.ec-logo {
+  height: 28px;
+  width: auto;
+  max-width: 86px;
+  object-fit: contain;
+  display: block;
+  background: #fff;
+  border: 1.5px solid var(--orange);
+  padding: 2px 4px;
+}
+
+/* ─── Blue header strip ─── */
+.ec-header-strip {
+  background: var(--blue);
+  padding: 4px 12px 8px;
+  text-align: center;
+  font-size: 1.05rem;
+  font-weight: 900;
+  color: var(--yellow);
+  letter-spacing: 0.5px;
+  flex-shrink: 0;
+}
+
+/* ─── Correct Sweeping Inward Curved Accents ─── */
+/* These now bulge inwards (D-shape) from the sides */
+.ec-accent {
+  position: absolute;
+  top: 75px;
+  width: 60px;
+  height: 160px;
+  z-index: 2;
+  pointer-events: none;
+}
+.ec-accent-left {
+  left: 0;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 60 160'%3E%3Cpath d='M0,10 C60,40 60,130 0,160 Z' fill='%23eb7c22'/%3E%3Cpath d='M0,0 C50,30 50,110 0,140 Z' fill='%231b5b8f'/%3E%3C/svg%3E")
+    no-repeat left top;
+}
+.ec-accent-right {
+  right: 0;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 60 160'%3E%3Cpath d='M60,10 C0,40 0,130 60,160 Z' fill='%23eb7c22'/%3E%3Cpath d='M60,0 C10,30 10,110 60,140 Z' fill='%231b5b8f'/%3E%3C/svg%3E")
+    no-repeat right top;
+}
+
+/* ─── Photo upload ─── */
+.ec-photo-area {
+  display: flex;
+  justify-content: center;
+  margin-top: 14px;
+  flex-shrink: 0;
+  z-index: 3;
+  position: relative;
+}
+.ec-photo-frame {
+  width: 104px;
+  height: 124px;
+  border: 4px solid var(--yellow);
+  border-radius: 4px;
+  overflow: hidden;
+  background: #e2e8f0;
+  position: relative;
+  cursor: pointer;
+}
+.ec-photo-frame:hover {
+  opacity: 0.9;
+}
+.ec-photo-frame input[type="file"] {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  cursor: pointer;
+  width: 100%;
+  height: 100%;
+}
+.ec-photo-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: none;
+}
+.ec-photo-placeholder {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.3rem;
+}
+.photo-cam {
+  font-size: 2rem;
+}
+.photo-hint-txt {
+  font-size: 0.68rem;
+  font-weight: 700;
+  color: var(--blue);
+  text-align: center;
+  line-height: 1.3;
+}
+
+/* ─── Candidate label ─── */
+.ec-name-label {
+  text-align: center;
+  font-size: 0.65rem;
+  font-weight: 700;
+  color: #1b5b8f;
+  margin-top: 10px;
+  letter-spacing: 0.5px;
+  flex-shrink: 0;
+  z-index: 3;
+  position: relative;
+}
+
+/* ─── Name input ─── */
+.ec-name-input {
+  display: block;
+  width: calc(100% - 30px);
+  margin: 2px 15px 0;
+  border: none;
+  border-bottom: 2px solid transparent;
+  background: transparent;
+  outline: none;
+  text-align: center;
+  font-size: 1.4rem;
+  font-weight: 900;
+  color: var(--text);
+  font-family: "Arial Black", Impact, sans-serif;
+  letter-spacing: -0.5px;
+  padding: 0 4px;
+  transition: border-color 0.2s;
+  z-index: 3;
+  position: relative;
+}
+.ec-name-input::placeholder {
+  color: #cbd5e1;
+  font-weight: 900;
+}
+.ec-name-input:focus {
+  border-bottom-color: rgba(27, 91, 143, 0.3);
+  background: rgba(239, 246, 255, 0.6);
+  border-radius: 3px;
+}
+
+/* ─── Detail field rows ─── */
+.ec-details {
+  margin: 6px 20px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
+  z-index: 3;
+  position: relative;
+  gap: 1px;
+  font-family: "Canva Sans", "Segoe UI", Roboto, Arial, sans-serif;
+}
+.ec-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  padding: 1px 0;
+  width: 100%;
+}
+.ec-key {
+  font-size: 0.76rem;
+  font-weight: 800;
+  color: #000;
+  white-space: nowrap;
+  flex-shrink: 0;
+  font-family: Arial, sans-serif;
+}
+.ec-val {
+  flex: 1;
+  border: none;
+  border-bottom: 1.5px solid transparent;
+  background: transparent;
+  outline: none;
+  font-size: 0.76rem;
+  color: #333;
+  font-family: Arial, sans-serif;
+  font-weight: 500;
+  padding: 1px 3px;
+  min-width: 0;
+  transition: border-color 0.2s;
+}
+.ec-val::placeholder {
+  color: #cbd5e1;
+}
+.ec-val:focus {
+  border-bottom-color: rgba(27, 91, 143, 0.3);
+  background: rgba(239, 246, 255, 0.6);
+  border-radius: 2px;
+}
+.ec-val-date {
+  color-scheme: light;
+}
+.ec-val-date:not(:focus):not([value]) {
+  color: #cbd5e1;
+}
+
+/* ─── Correct Bottom U-Shape Wave ─── */
+.ec-wave {
+  height: 60px;
+  flex-shrink: 0;
+  margin-top: 10px;
+  z-index: 2;
+  position: relative;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 70' preserveAspectRatio='none'%3E%3Cpath d='M0,10 Q200,80 400,10 L400,70 L0,70 Z' fill='%23eb7c22'/%3E%3Cpath d='M0,25 Q200,95 400,25 L400,70 L0,70 Z' fill='%231b5b8f'/%3E%3C/svg%3E")
+    no-repeat bottom center / 100% 100%;
+}
+
+/* =============================================
+   BACK CARD
+   ============================================= */
+.ec-back {
+  width: 310px;
+}
+.ec-staff-row {
+  display: flex;
+  align-items: center;
+  padding: 4px 18px;
+  gap: 5px;
+}
+.ec-staff-label {
+  font-size: 0.76rem;
+  font-weight: 800;
+  color: #000;
+  white-space: nowrap;
+  flex-shrink: 0;
+  font-family: Arial, sans-serif;
+}
+.ec-staff-input {
+  flex: 1;
+  border: none;
+  border-bottom: 1px solid transparent;
+  background: transparent;
+  outline: none;
+  font-size: 0.76rem;
+  color: #333;
+  font-weight: 700;
+  font-family: Arial, sans-serif;
+  min-width: 0;
+  padding: 1px 3px;
+  transition: border-color 0.2s;
+}
+.ec-staff-input::placeholder {
+  color: #cbd5e1;
+  font-weight: 400;
+}
+.ec-staff-input:focus {
+  border-bottom-color: rgba(27, 91, 143, 0.3);
+}
+
+.ec-office {
+  padding: 4px 14px;
+  margin-top: 4px;
+}
+.ec-office-title {
+  font-size: 0.8rem;
+  font-weight: 900;
+  color: var(--orange);
+  text-align: center;
+  margin-bottom: 2px;
+}
+.ec-office-body {
+  display: flex;
+  gap: 6px;
+  align-items: flex-start;
+  padding-left: 8px;
+}
+.ec-pin {
+  font-size: 1.1rem;
+  line-height: 1.4;
+  flex-shrink: 0;
+}
+.ec-office-body p {
+  font-size: 0.68rem;
+  color: #333;
+  line-height: 1.5;
+  font-family: Arial, sans-serif;
+  font-weight: 500;
+}
+.ec-wave-back {
+  margin-top: auto;
+}
+
+/* =============================================
+   STEP ACTIONS & BUTTONS
+   ============================================= */
+.step-actions {
+  display: flex;
+  gap: 0.8rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  width: 100%;
+}
+.back-actions {
+  justify-content: space-between;
+  max-width: 310px;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.65rem 1.4rem;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-weight: 700;
+  cursor: pointer;
+  border: none;
+  transition:
+    transform 0.15s,
+    box-shadow 0.15s,
+    filter 0.15s;
+}
+.btn:hover {
+  transform: translateY(-2px);
+}
+.btn:active {
+  transform: none;
+}
+
+.btn-next {
+  background: var(--blue);
+  color: #fff;
+  box-shadow: 0 4px 16px rgba(27, 91, 143, 0.3);
+  padding: 0.75rem 2.2rem;
+  font-size: 0.95rem;
+}
+.btn-next:hover {
+  box-shadow: 0 6px 20px rgba(27, 91, 143, 0.4);
+  filter: brightness(1.1);
+}
+.btn-outline-back {
+  background: #fff;
+  color: var(--muted);
+  border: 1.5px solid var(--border);
+  font-size: 0.85rem;
+  padding: 0.6rem 1rem;
+}
+.btn-outline-back:hover {
+  border-color: var(--blue);
+  color: var(--blue);
+}
+.btn-save {
+  background: var(--blue);
+  color: #fff;
+  box-shadow: 0 4px 14px rgba(27, 91, 143, 0.3);
+}
+.btn-save:hover {
+  box-shadow: 0 6px 18px rgba(27, 91, 143, 0.4);
+  filter: brightness(1.1);
+}
+
+.after-save-actions {
+  width: 100%;
+  max-width: 310px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  align-items: center;
+  animation: fadeSlide 0.3s ease;
+}
+.save-success {
+  background: #f0fdf4;
+  border: 1.5px solid #bbf7d0;
+  color: var(--green);
+  font-size: 0.88rem;
+  font-weight: 700;
+  padding: 0.55rem 1.2rem;
+  border-radius: 8px;
+  text-align: center;
+  width: 100%;
+}
+.after-btns {
+  display: flex;
+  gap: 0.8rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 100%;
+}
+
+.btn-add {
+  background: #fff;
+  color: var(--blue);
+  border: 2px solid var(--blue);
+  font-size: 0.88rem;
+  padding: 0.6rem 1.2rem;
+}
+.btn-add:hover {
+  background: #eff6ff;
+}
+.btn-download {
+  background: var(--green);
+  color: #fff;
+  box-shadow: 0 4px 14px rgba(22, 163, 74, 0.3);
+  font-size: 0.88rem;
+}
+.btn-download:hover {
+  box-shadow: 0 6px 18px rgba(22, 163, 74, 0.4);
+  filter: brightness(1.05);
+}
+.pdf-count {
+  font-size: 0.78rem;
+  opacity: 0.85;
+  font-weight: 600;
+}
+
+/* =============================================
+   PDF HIDDEN PAGES
+   ============================================= */
+.pdf-page {
+  width: 2970px;
+  height: 2100px;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 70px 125px;
+  box-sizing: border-box;
+}
+.pdf-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 576px);
+  grid-template-rows: repeat(2, 980px);
+  column-gap: 138px;
+  row-gap: 0;
+  box-sizing: border-box;
+}
+
+/* ─── PDF exact card ─── */
+.pdf-card-exact {
+  width: 576px;
+  height: 980px;
+  border: 4px dashed #334155;
+  overflow: hidden;
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  box-sizing: border-box;
+}
+
+.pdf-card-exact .ec-logo-bar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 13px;
+  padding: 19px 15px 10px;
+  background: transparent;
+  position: relative;
+  z-index: 10;
+}
+.pdf-card-exact .ec-logo {
+  height: 47px;
+  max-width: 145px;
+  object-fit: contain;
+  background: #fff;
+  border: 3.5px solid var(--orange);
+  border-radius: 6px;
+  padding: 3px 8px;
+}
+.pdf-card-exact .ec-header-strip {
+  text-align: center;
+  font-size: 1.6rem;
+  font-weight: 900;
+  color: #ffcc00;
+  letter-spacing: 0.5px;
+  position: relative;
+  z-index: 10;
+  line-height: 1.2;
+}
+.pdf-card-exact .ec-photo-area {
+  display: flex;
+  justify-content: center;
+  margin-top: 12px;
+  position: relative;
+  z-index: 10;
+}
+.pdf-card-exact .ec-photo-frame {
+  width: 193px;
+  height: 200px;
+  border-radius: 8px;
+  border: 6px solid #ffcc00;
+  overflow: hidden;
+  background: #e2e8f0;
+}
+.pdf-card-exact .ec-photo-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  background: #e2e8f0;
+  display: block;
+}
+.pdf-card-exact .ec-name-label {
+  text-align: center;
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: var(--blue);
+  margin-top: 40px;
+  position: relative;
+  z-index: 10;
+  letter-spacing: 1px;
+}
+.pdf-card-exact .ec-name-input {
+  font-size: 2.55rem;
+  font-weight: 900;
+  color: #000;
+  text-align: center;
+  font-family: "Arial Narrow", "Impact", "Trebuchet MS", sans-serif;
+  text-transform: uppercase;
+  margin-top: 4px;
+  margin-bottom: 35px;
+  position: relative;
+  z-index: 10;
+  letter-spacing: 0;
+  line-height: 1.05;
+}
+.pdf-card-exact .ec-details {
+  padding: 0 70px;
+  margin-top: 25px;
+  position: relative;
+  z-index: 10;
+  font-size: 5rem;
+  line-height: 1.25;
+  color: #1e293b;
+  font-family: "Canva Sans", "Segoe UI", Roboto, Arial, sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+}
+.pdf-card-exact .ec-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: flex-start;
+  margin-bottom: 10px;
+  width: 100%;
+}
+.pdf-card-exact .ec-key {
+  font-size: 1.55rem;
+  font-weight: 900;
+  color: #000;
+  width: auto;
+  margin-right: 10px;
+  flex-shrink: 0;
+  white-space: nowrap;
+  font-family: "Canva Sans", "Segoe UI", Roboto, Arial, sans-serif;
+}
+.pdf-card-exact .ec-val {
+  font-size: 1.55rem;
+  flex: 0 1 auto;
+  max-width: 64%;
+  font-weight: 600;
+  color: #334155;
+  text-align: left;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-family: "Canva Sans", "Segoe UI", Roboto, Arial, sans-serif;
+}
+.pdf-card-exact .ec-staff-row {
+  display: flex;
+  align-items: center;
+  padding: 0 30px;
+  margin-top: 14px;
+  font-size: 1.8rem;
+  position: relative;
+  z-index: 10;
+}
+.pdf-card-exact .ec-staff-label {
+  font-size: 1.3rem;
+  font-weight: 800;
+  color: #000;
+  width: auto;
+  margin-right: 12px;
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+.pdf-card-exact .ec-staff-input {
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: #334155;
+  flex: 1;
+}
+.pdf-card-exact .ec-office {
+  padding: 0 30px;
+  margin-top: 16px;
+  position: relative;
+  z-index: 10;
+}
+.pdf-card-exact .ec-staff-row + .ec-office {
+  margin-top: 44px;
+}
+.pdf-card-exact .ec-office-title {
+  font-size: 1.55rem;
+  font-weight: 900;
+  color: var(--orange);
+  text-align: center;
+  margin-bottom: 6px;
+}
+.pdf-card-exact .ec-office-body {
+  display: flex;
+  gap: 10px;
+  font-size: 1.15rem;
+  line-height: 1.35;
+  color: #334155;
+}
+.pdf-card-exact .ec-pin {
+  font-size: 1.4rem;
+}
+.pdf-card-exact .ec-office-body p {
+  font-size: 1.3rem;
+  margin: 0;
+}
+
+/* ─── PDF card base ─── */
+.pdf-card {
+  width: 232px;
+  height: 370px;
+  border-radius: 8px;
+  overflow: hidden;
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  outline: 2px dashed #b0bec5;
+  outline-offset: -3px;
+}
+.pdf-logo-bar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  padding: 5px 7px 4px;
+  background: var(--blue);
+  flex-shrink: 0;
+}
+.pdf-logo-img {
+  height: 23px;
+  width: auto;
+  max-width: 67px;
+  object-fit: contain;
+  display: block;
+  background: #fff;
+  border: 1px solid var(--orange);
+  padding: 1px 3px;
+}
+.pdf-header-strip {
+  background: var(--blue);
+  padding: 4px 8px 7px;
+  text-align: center;
+  flex-shrink: 0;
+}
+.pdf-header-text {
+  color: var(--yellow);
+  font-size: 0.8rem;
+  font-weight: 900;
+  letter-spacing: 0px;
+}
+
+.pdf-accent {
+  position: absolute;
+  top: 59px;
+  width: 53px;
+  height: 120px;
+  z-index: 1;
+  pointer-events: none;
+}
+.pdf-accent-left {
+  left: 0;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 60 160'%3E%3Cpath d='M0,10 C60,40 60,130 0,160 Z' fill='%23eb7c22'/%3E%3Cpath d='M0,0 C50,30 50,110 0,140 Z' fill='%231b5b8f'/%3E%3C/svg%3E")
+    no-repeat left top / contain;
+}
+.pdf-accent-right {
+  right: 0;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 60 160'%3E%3Cpath d='M60,10 C0,40 0,130 60,160 Z' fill='%23eb7c22'/%3E%3Cpath d='M60,0 C10,30 10,110 60,140 Z' fill='%231b5b8f'/%3E%3C/svg%3E")
+    no-repeat right top / contain;
+}
+
+.pdf-photo-area {
+  display: flex;
+  justify-content: center;
+  margin-top: 11px;
+  flex-shrink: 0;
+  z-index: 2;
+  position: relative;
+}
+.pdf-photo-frame {
+  width: 83px;
+  height: 99px;
+  border: 4px solid var(--yellow);
+  border-radius: 4px;
+  overflow: hidden;
+  background: #e2e8f0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.pdf-photo-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.pdf-photo-empty {
+  font-size: 2.4rem;
+  color: #cbd5e1;
+}
+.pdf-name-label {
+  text-align: center;
+  font-size: 0.51rem;
+  font-weight: 700;
+  color: var(--blue);
+  margin-top: 8px;
+  letter-spacing: 0px;
+  z-index: 2;
+  position: relative;
+}
+.pdf-name {
+  text-align: center;
+  font-size: 1.07rem;
+  font-weight: 900;
+  color: #000;
+  font-family: "Arial Black", Impact, sans-serif;
+  padding: 0 13px;
+  line-height: 1.1;
+  margin-top: 1px;
+  z-index: 2;
+  position: relative;
+}
+.pdf-details {
+  margin: 8px 16px 0;
+  flex: 1;
+  overflow: hidden;
+  z-index: 2;
+  position: relative;
+}
+.pdf-details p {
+  font-size: 0.56rem;
+  color: #333;
+  line-height: 1.5;
+  font-family: Arial, sans-serif;
+  font-weight: 500;
+}
+.pdf-details b {
+  color: #000;
+  font-weight: 800;
+}
+.pdf-wave {
+  height: 48px;
+  flex-shrink: 0;
+  margin-top: auto;
+  z-index: 1;
+  position: relative;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 70' preserveAspectRatio='none'%3E%3Cpath d='M0,10 Q200,80 400,10 L400,70 L0,70 Z' fill='%23eb7c22'/%3E%3Cpath d='M0,25 Q200,95 400,25 L400,70 L0,70 Z' fill='%231b5b8f'/%3E%3C/svg%3E")
+    no-repeat bottom center / 100% 100%;
+}
+
+/* ─── PDF Back card ─── */
+.pdf-back-card {
+  font-size: 0.52rem;
+}
+.pdf-staff-row {
+  display: flex;
+  align-items: center;
+  padding: 3px 10px 2px;
+  gap: 4px;
+}
+.pdf-sl,
+.pdf-staff-label {
+  font-size: 0.54rem;
+  font-weight: 800;
+  white-space: nowrap;
+  color: #000;
+  font-family: Arial, sans-serif;
+}
+.pdf-sv,
+.pdf-staff-val {
+  font-size: 0.54rem;
+  color: #333;
+  font-weight: 700;
+  min-width: 19px;
+  font-family: Arial, sans-serif;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.pdf-office {
+  padding: 2px 10px 1px;
+}
+.pdf-office-title {
+  font-size: 0.56rem;
+  font-weight: 900;
+  color: var(--orange);
+  text-align: center;
+  margin-bottom: 1px;
+}
+.pdf-office-body {
+  display: flex;
+  gap: 4px;
+  align-items: flex-start;
+}
+.pdf-pin {
+  font-size: 0.75rem;
+  line-height: 1;
+  flex-shrink: 0;
+}
+.pdf-office-body p {
+  font-size: 0.47rem;
+  color: #333;
+  line-height: 1.25;
+  font-family: Arial, sans-serif;
+  font-weight: 500;
+  margin: 0;
+}
+
+/* =============================================
+   LOADING OVERLAY & FOOTER
+   ============================================= */
+.loading-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.65);
+  z-index: 9999;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(5px);
+}
+.loading-overlay.active {
+  display: flex;
+}
+.loading-box {
+  background: #fff;
+  border-radius: 21px;
+  padding: 2.67rem 3.33rem;
+  text-align: center;
+  box-shadow: 0 16px 53px rgba(0, 0, 0, 0.25);
+}
+.spinner {
+  width: 53px;
+  height: 53px;
+  border: 5px solid #e2e8f0;
+  border-top-color: var(--blue);
+  border-radius: 50%;
+  animation: spin 0.75s linear infinite;
+  margin: 0 auto 0.93rem;
+}
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+.loading-box p {
+  font-weight: 700;
+  color: var(--blue);
+  font-size: 1.2rem;
+}
+.site-footer {
+  text-align: center;
+  padding: 1.33rem;
+  font-size: 1.04rem;
+  color: var(--muted);
+  border-top: 1px solid var(--border);
+  background: #fff;
+}
