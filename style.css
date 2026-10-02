@@ -22,8 +22,8 @@
   --border: #e2e8f0;
   --pdf-page-width: 2970px;
   --pdf-page-height: 2100px;
-  --pdf-card-width: 576px;
-  --pdf-card-height: 980px;
+  --pdf-card-width: 550px;
+  --pdf-card-height: 935px;
 }
 
 body {
@@ -320,6 +320,11 @@ body {
   cursor: pointer;
 }
 .ec-photo-frame:hover {
+  opacity: 0.9;
+}
+.ec-photo-frame.drag-over {
+  border-color: var(--orange);
+  box-shadow: 0 0 0 4px rgba(235, 124, 34, 0.25);
   opacity: 0.9;
 }
 .ec-photo-frame input[type="file"] {

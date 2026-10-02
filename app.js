@@ -96,14 +96,43 @@ function updateProgress(step = "front") {
 }
 
 // ─── Photo upload ─────────────────────────────────────────────
-$("photoInput").addEventListener("change", async function () {
-  const file = this.files[0];
-  if (!file) return;
+async function setPhotoFile(file) {
+  if (!file || !file.type.startsWith("image/")) return;
   draft.photo = await readFileAsDataURL(file);
   const prev = $("photoPreview");
   prev.src = draft.photo;
   prev.style.display = "block";
   $("photoPlaceholder").style.display = "none";
+}
+
+$("photoInput").addEventListener("change", function () {
+  setPhotoFile(this.files[0]);
+});
+
+const photoFrame = $("photoFrame");
+
+photoFrame.addEventListener("dragover", (event) => {
+  event.preventDefault();
+  photoFrame.classList.add("drag-over");
+});
+
+photoFrame.addEventListener("dragleave", () => {
+  photoFrame.classList.remove("drag-over");
+});
+
+photoFrame.addEventListener("drop", (event) => {
+  event.preventDefault();
+  photoFrame.classList.remove("drag-over");
+  setPhotoFile(event.dataTransfer.files[0]);
+});
+
+document.addEventListener("paste", (event) => {
+  const imageItem = [...event.clipboardData.items].find((item) =>
+    item.type.startsWith("image/"),
+  );
+  if (!imageItem) return;
+  event.preventDefault();
+  setPhotoFile(imageItem.getAsFile());
 });
 
 function readFileAsDataURL(file) {
