@@ -724,14 +724,17 @@ body {
 }
 .pdf-card-exact .ec-logo {
   height: 47px;
-  max-width: 145px;
-  object-fit: contain;
+  flex: 1 1 auto;
+  max-width: none;
+  min-width: 0;
   background: #fff;
   border: 3.5px solid var(--orange);
   border-radius: 6px;
-  padding: 3px 8px;
-}
-.pdf-card-exact .ec-header-strip {
+  overflow: visible;
+  text-overflow: clip;
+  white-space: normal;
+  overflow-wrap: anywhere;
+  word-break: break-word;
   text-align: center;
   font-size: 1.6rem;
   font-weight: 900;
@@ -821,13 +824,17 @@ body {
 .pdf-card-exact .ec-val {
   font-size: 1.55rem;
   flex: 0 1 auto;
-  max-width: 64%;
-  font-weight: 600;
+  width: auto;
+  max-width: none;
+  min-width: 0;
+  font-weight: 700;
   color: #334155;
   text-align: left;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  overflow: visible;
+  text-overflow: clip;
   white-space: nowrap;
+  overflow-wrap: normal;
+  word-break: normal;
   font-family: "Canva Sans", "Segoe UI", Roboto, Arial, sans-serif;
 }
 .pdf-card-exact .ec-staff-row {
