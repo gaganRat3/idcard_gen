@@ -433,7 +433,16 @@ $("btnDownloadPdf").addEventListener("click", async () => {
     for (let i = 0; i < 8; i++) {
       const card = savedCards[i % savedCards.length];
       frontGrid.appendChild(buildPdfFrontCard(card));
-      backGrid.appendChild(buildPdfBackCard(card));
+    }
+
+    // The copier flips this landscape sheet over its long edge, so reverse
+    // the two rows to keep each back card behind its matching front card.
+    for (let row = 1; row >= 0; row--) {
+      for (let column = 0; column < 4; column++) {
+        const cardIndex = row * 4 + column;
+        const card = savedCards[cardIndex % savedCards.length];
+        backGrid.appendChild(buildPdfBackCard(card));
+      }
     }
 
     const pc = $("pdfContainer");
@@ -443,6 +452,8 @@ $("btnDownloadPdf").addEventListener("click", async () => {
 
     const opt = {
       scale: 2.5,
+      width: 2970,
+      height: 2100,
       useCORS: true,
       allowTaint: true,
       backgroundColor: "#fff",

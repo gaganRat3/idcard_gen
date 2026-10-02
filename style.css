@@ -20,6 +20,10 @@
   --text: #0f172a;
   --muted: #64748b;
   --border: #e2e8f0;
+  --pdf-page-width: 2970px;
+  --pdf-page-height: 2100px;
+  --pdf-card-width: 576px;
+  --pdf-card-height: 980px;
 }
 
 body {
@@ -667,8 +671,8 @@ body {
    PDF HIDDEN PAGES
    ============================================= */
 .pdf-page {
-  width: 2970px;
-  height: 2100px;
+  width: var(--pdf-page-width);
+  height: var(--pdf-page-height);
   background: #fff;
   display: flex;
   align-items: center;
@@ -678,17 +682,22 @@ body {
 }
 .pdf-grid {
   display: grid;
-  grid-template-columns: repeat(4, 576px);
-  grid-template-rows: repeat(2, 980px);
+  grid-template-columns: repeat(4, var(--pdf-card-width));
+  grid-template-rows: repeat(2, var(--pdf-card-height));
   column-gap: 138px;
   row-gap: 0;
   box-sizing: border-box;
 }
 
+/* Match the second sheet's visible top margin after the copier flip. */
+#pdfPage2 .pdf-grid {
+  transform: translateY(35px);
+}
+
 /* ─── PDF exact card ─── */
 .pdf-card-exact {
-  width: 576px;
-  height: 980px;
+  width: var(--pdf-card-width);
+  height: var(--pdf-card-height);
   border: 4px dashed #334155;
   overflow: hidden;
   background: #fff;
