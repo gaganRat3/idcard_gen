@@ -362,7 +362,7 @@ function buildPdfFrontCard(card) {
     <div class="ec-row"><span class="ec-key">Member ID :</span><span class="ec-val">${esc(card.memberId)}</span></div>
     <div class="ec-row"><span class="ec-key">D.O.B :</span><span class="ec-val">${esc(card.dob)}</span></div>
     <div class="ec-row"><span class="ec-key">Current Location :</span><span class="ec-val">${esc(card.location)}</span></div>
-    <div class="ec-row"><span class="ec-key">Email id :</span><span class="ec-val">${esc(card.email)}</span></div>
+    <div class="ec-row ec-email-row"><span class="ec-key">Email id :</span><span class="ec-val ec-email-val">${esc(card.email)}</span></div>
     <div class="ec-row"><span class="ec-key">Mobile No :</span><span class="ec-val">${esc(card.mobile)}</span></div>
   `;
   wrap.appendChild(det);

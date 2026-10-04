@@ -837,6 +837,16 @@ body {
   word-break: normal;
   font-family: "Canva Sans", "Segoe UI", Roboto, Arial, sans-serif;
 }
+.pdf-card-exact .ec-email-row {
+  align-items: flex-start;
+}
+.pdf-card-exact .ec-email-val {
+  flex: 1 1 auto;
+  white-space: normal;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+  line-height: 1.25;
+}
 .pdf-card-exact .ec-staff-row {
   display: flex;
   align-items: center;
